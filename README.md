@@ -2,64 +2,120 @@
 
 ## Project Overview
 
-This project transforms raw Excel sales data into a fully interactive, insight-driven analytics dashboard built in Power BI. It covers the full data lifecycle — from raw ingestion and cleaning through to strategic business insights — enabling sales teams and management to make data-driven decisions in real time.
+This project transforms raw Excel car sales data into a fully interactive, multi-page analytics dashboard built in Power BI. It covers the complete data lifecycle — from ingestion and cleaning through to strategic business insights — empowering sales teams and management to monitor performance in real time and make data-driven decisions.
+
+The dashboard consists of two dedicated pages: a high-level **Dashboard** view and a drill-down **Details** view, connected by intelligent navigation buttons.
 
 ---
 
 ## Data Pipeline & Modeling
 
-Raw Excel data was imported and processed using **Power Query**, where it was cleaned, shaped, and structured into an integrated data model. This foundation ensures data consistency and enables reliable calculations across all visualizations.
+Raw Excel data was imported and processed using **Power Query**, where it was cleaned, shaped, and structured into an integrated relational data model. This foundation ensures consistency across all measures and enables reliable cross-filtering between visuals.
 
 ---
 
 ## Key Performance Indicators (KPIs)
 
-Advanced KPIs were engineered using **DAX (Data Analysis Expressions)** formulas:
+Six headline KPI cards sit at the top of both pages, providing an at-a-glance performance summary at all times:
 
-- **Year-to-Date (YTD) Performance** — tracks cumulative sales with automatic year-over-year comparisons
-- **Month-to-Date (MTD) Sales** — enables real-time monitoring of monthly progress
-- **Annual Sales Average** — benchmarks performance against historical norms
-- **Vehicles Sold Metrics** — unit-level tracking alongside revenue figures
-- **Smart Color-Coding System** — dynamically highlights positive (green) vs. negative (red) performance trends across all KPI cards
+| KPI | Value | YoY Change |
+|---|---|---|
+| **YTD Total Sales** | $371M | +$71M (+23.59%) ✅ |
+| **MTD Total Sales** | $54.28M | — |
+| **YTD AVG Price** | $28K | -223.48 (-0.79%) 🔴 |
+| **MTD AVG Price** | $28.26K | — |
+| **YTD Cars Sold** | 13K | +2.62K (+24.57%) ✅ |
+| **MTD Cars Sold** | 2K | — |
+
+The **smart color-coding system** dynamically renders YoY differences in green (positive) or red (negative), giving users an instant signal of performance direction without reading the numbers.
+
+### DAX Measures Engineered
+
+- **Year-to-Date (YTD)** sales, average price, and units sold — with automatic year-over-year delta calculations
+- **Month-to-Date (MTD)** equivalents for real-time monthly tracking
+- **%GT YTD Cars Sold** — each company's or product's percentage contribution to total units sold
+- Conditional formatting logic driving the color-coding system
+
+---
+
+## Dashboard Page
+
+The main Dashboard page provides a strategic overview through five key visualizations:
+
+### 📈 Sum of Price by Week
+A line chart tracking weekly revenue across ~50 weeks, revealing a clear upward growth trend in the first half of the year followed by fluctuation and mid-year softening.
+
+### 🎨 YTD Total Sales by Color
+A donut chart breaking down sales by vehicle color:
+- **Pale White** — $175M (47.0%) — largest segment
+- **Black** — $125M (33.7%)
+- **Red** — $71M (19.2%)
+
+> While Pale White leads by volume, Black vehicles punch above their weight in average transaction value.
+
+### 🚙 YTD Total Sales by Body Style
+A donut chart showing body style distribution:
+- **SUV** — $100M (26.9%) — most demanded style
+- **Hatchback** — $83M (22.3%)
+- **Sedan** — $74M (19.9%)
+- **Passenger** — $63M (17.1%)
+- **Hardtop** — $51M (13.8%)
+
+### 🗺️ YTD Cars Sold by Dealer Region
+An interactive Bing map displaying regional bubble sizes proportional to units sold. **Middletown** and **Aurora** are the standout top-performing regions, with additional activity in Pasco, Janesville, Scottsdale, Austin, and Greenville.
+
+### 👥 Top 8 Customers by Sales
+A horizontal bar chart ranking individual customers by total spend:
+
+| Rank | Customer | Sales |
+|---|---|---|
+| 1 | Emma | $2.80M |
+| 2 | Lucas | $2.64M |
+| 3 | Thomas | $2.55M |
+| 4 | Alexis | $2.19M |
+| 5 | Lea | $2.13M |
+| 6 | Chloe | $2.03M |
+| 7 | Nathan | $2.01M |
+| 8 | Paul | $1.98M |
+
+### 🏢 Company Performance Table
+A summary matrix showing each brand's YTD AVG Price, YTD Cars Sold, and %GT YTD Cars Sold with inline bar charts. Top brands by unit volume include **Chevrolet (7.87%)**, **Ford (6.68%)**, **Dodge (7.16%)**, and **Chrysler (4.66%)**.
+
+---
+
+## Details Page
+
+The Details page provides granular drill-down capability into individual vehicle records, filterable by:
+
+- **Body Style**
+- **Engine**
+- **Model**
+- **Dealer Name**
+
+The main visual is a sortable data table showing every vehicle record with columns for Company, Body Style, Model, Color, YTD AVG Price, and %GT YTD Cars Sold (with inline bar charts). The table is sorted by YTD AVG Price descending, with premium vehicles (Lincoln Continental, Toyota Tacoma, Volvo C70) at $82K+ leading the list.
 
 ---
 
 ## Interactive Features
 
-The dashboard was designed for exploration, not just reporting:
-
-- **Multi-dimensional filter slicers** — filter by Year, Company, Color, and Body Style simultaneously
-- **Navigation buttons** — intelligent page-switching between dashboard views for a smooth user experience
-- **Diverse chart types** — including heat maps, data tables, line charts, and pie/donut charts, each chosen to best represent its data type
+- **Navigation buttons** — one-click switching between Dashboard and Details pages
+- **Cross-filtering** — clicking any visual filters all others on the page simultaneously
+- **Filter slicers** — Body Style, Engine, Model, and Dealer Name panels on the left sidebar
+- **Sort controls** — column-level sorting on the details table
+- **Tooltips** — hover-over detail on all chart elements
 
 ---
 
 ## Key Discoveries
 
-| Insight | Finding |
-|---|---|
-| 🎨 Top-selling color | Black vehicles dominate sales by a significant margin |
-| 🚙 Most popular body style | SUVs lead demand across all regions and periods |
-| 📈 Sales trend | Strong growth in early months, followed by a mid-year decline |
-| 🏆 Top-performing regions | Middletown and Aurora consistently show the highest sales volumes |
-
----
-
-## Dashboard Sections
-
-Based on the dashboard visuals, the project covers the following analytical dimensions:
-
-- **Profit by Education** — customer education level correlated with purchase value
-- **Sales by Month** — monthly trend line tracking revenue in millions
-- **Sales by Marital Status** — 52% married vs. 48% single customer split
-- **Sales by Year** — multi-year performance trend (2010–2014)
-- **Profit by State** — geographic heat map across U.S. states
-- **AVG Shipping by Method** — Priority Air, Regular Air, and Regular Ground cost comparison
-- **Top 10 Products by Profit** — Road-150 and Mountain-200 series lead profitability
-- **Profit & Sales Over Month** — dual-axis view of sales amount vs. profit by month
-- **Top 10 Customers by Profit** — individual customer contribution ranking
-- **Sales per Sales Rep** — performance comparison across reps: Adam, Bob, Erica, John, and Nadia
-- **Sales by Gender** — 50/50 split between male and female customers
+| # | Insight | Detail |
+|---|---|---|
+| 1 | 🎨 **Color preference** | Pale White leads by volume (47%), but Black commands higher avg. prices |
+| 2 | 🚙 **Body style demand** | SUVs are the most purchased style at 26.9% of total sales |
+| 3 | 📈 **Sales trend** | Consistent weekly growth in H1, softening and volatility in H2 |
+| 4 | 🏆 **Top regions** | Middletown and Aurora drive the highest dealer-level volume |
+| 5 | 💰 **Premium brands** | Lincoln, Toyota (Tacoma), and Volvo achieve the highest avg. transaction prices ($82K+) |
+| 6 | 📊 **Growth** | YTD sales up +23.59% and units sold up +24.57% YoY — strong overall momentum |
 
 ---
 
@@ -67,17 +123,20 @@ Based on the dashboard visuals, the project covers the following analytical dime
 
 | Tool | Purpose |
 |---|---|
-| **Power BI Desktop** | Dashboard design and publishing |
+| **Power BI Desktop** | Dashboard design, publishing, and interactivity |
 | **Power Query** | Data ingestion, cleaning, and transformation |
-| **DAX** | KPI formulas and calculated measures |
+| **DAX** | KPI measures, YTD/MTD calculations, conditional formatting |
+| **Bing Maps** | Geographic regional sales visualization |
 | **Excel** | Source data format |
 
 ---
 
 ## Skills Demonstrated
 
-- Data modeling and ETL with Power Query
-- Advanced DAX formula development
-- Dashboard UX design with interactive navigation
-- Business intelligence storytelling through visualization
-- KPI design with conditional formatting logic
+- End-to-end BI development from raw data to published dashboard
+- Advanced DAX formula authoring (YTD, MTD, YoY, %GT)
+- Multi-page report design with UX-focused navigation
+- Data storytelling through complementary chart type selection
+- Conditional formatting and dynamic KPI design
+- Geographic data visualization with map visuals
+- Drill-through architecture connecting summary and detail views
